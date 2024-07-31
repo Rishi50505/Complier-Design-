@@ -1,0 +1,27 @@
+%{
+#include <stdio.h>
+#include <string.h>
+
+char longest[100];
+%}
+
+%%
+
+[a-zA-Z]+ {
+    if (strlen(yytext) > strlen(longest)) {
+        strcpy(longest, yytext);
+    }
+}
+
+\n {
+    printf("Longest word: %s\n", longest);
+    longest[0] = '\0'; // Reset for next input
+}
+
+%%
+
+int main() {
+    printf("Enter three words separated by spaces:\n");
+    yylex();
+    return 0;
+}

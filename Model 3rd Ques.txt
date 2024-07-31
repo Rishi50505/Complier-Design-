@@ -1,0 +1,23 @@
+%{
+#include <stdio.h>
+%}
+
+%%
+
+"<html>" { printf("HTML Tag: %s\n", yytext); }
+"</html>" { printf("HTML Tag: %s\n", yytext); }
+"<body>" { printf("Body Tag: %s\n", yytext); }
+"</body>" { printf("Body Tag: %s\n", yytext); }
+"<h1>" { printf("H1 Tag: %s\n", yytext); }
+"</h1>" { printf("H1 Tag: %s\n", yytext); }
+"<p>" { printf("P Tag: %s\n", yytext); }
+"</p>" { printf("P Tag: %s\n", yytext); }
+"<[^>]+>" { printf("Other Tag: %s\n", yytext); }
+
+%%
+
+int main() {
+    printf("Enter HTML content:\n");
+    yylex();
+    return 0;
+}
